@@ -10,9 +10,9 @@ public class Tom
 {
 
 
-    OggettoGrid dn, md, up;
-    final float sogliaC = 0.1f;
-    final float sogliaP = 0.07f;
+    OggettoGrid md, up;
+    final float sogliaC = 0.20f;
+    final float sogliaP = 0.09f;
     float counterTimeC = 0;
     float counterTimeP = 0;
 
@@ -24,28 +24,24 @@ public class Tom
     public Tom(V p, V s)
     {
         position = p;
-        dn = new OggettoGrid(p, new A(), s, OggMgr.TEX_TOM, 7,2,6,0);
-        md = new OggettoGrid(p, new A(), s, OggMgr.TEX_TOM, 7,2,0,1);
-        up = new OggettoGrid(p, new A(), s, OggMgr.TEX_TOM, 7,2,6,0);
+        md = new OggettoGrid(p, new A(), s, OggMgr.TEX_TOM, 3,2,0,1);
+        up = new OggettoGrid(p, new A(), s, OggMgr.TEX_TOM, 3,2,0,0);
 
 
 
         D.add(up);
         D.add(md);
-        D.add(dn);
     }
 
     public void SetPosition(V p)
     {
         position = p;
-        dn.position = p;
         md.position = p;
         up.position = p;
     }
 
     public void SetAngle(A p)
     {
-        dn.alpha = p;
         md.alpha = p;
         up.alpha = p;
     }
@@ -62,20 +58,18 @@ public class Tom
 
             counterCamminata--;
             if(counterCamminata < 0)
-                counterCamminata = 6;
+                counterCamminata = 1;
 
             md.setIndXColTexture(counterCamminata);
         }
 
         if(tipo == TomAnim.ANGRY_CAMMINATA)
         {
-            up.setIndXColTexture(4);
-            dn.setIndXColTexture(5);
+            up.setIndXColTexture(1);
         }
         else if(tipo == TomAnim.NON_ANGRY)
         {
-            up.setIndXColTexture(6);
-            dn.setIndXColTexture(6);
+            up.setIndXColTexture(0);
         }
 
 
@@ -92,7 +86,7 @@ public class Tom
 
             counterPugno++;
 
-            if(counterPugno == 5)
+            if(counterPugno == 2)
             {
                 Angry();
                 return;
@@ -100,14 +94,10 @@ public class Tom
 
             switch (counterPugno)
             {
-                case 0: up.setIndXColTexture(0); dn.setIndXColTexture(0); break;
-                case 1: up.setIndXColTexture(1); dn.setIndXColTexture(2); break;
-                case 2: up.setIndXColTexture(3); dn.setIndXColTexture(3); break;
-                case 3: up.setIndXColTexture(4); dn.setIndXColTexture(5); break;
+                case 0: up.setIndXColTexture(1); break;
+                case 1: up.setIndXColTexture(2); break;
             }
         }
-
-
     }
 
     public void DaiPugno() { tipo = TomAnim.ANGRY_PUGNO_DX; counterPugno = -1; counterTimeP = 0;}
