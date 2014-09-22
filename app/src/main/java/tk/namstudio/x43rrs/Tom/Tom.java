@@ -29,13 +29,13 @@ public class Tom
 
 
 
-        D.add(up);
         D.add(md);
+        D.add(up);
+
     }
 
     public void SetPosition(V p)
     {
-        position = p;
         md.position = p;
         up.position = p;
     }
@@ -51,8 +51,8 @@ public class Tom
         counterTimeC+=telapsed;
         if(counterTimeC>sogliaC)
         {
-            SetPosition(new V(position.x, position.y+ 0.002f*(float)Math.sin(counterCamminata*(4*Math.PI/7))));
-            SetAngle(new A(1.5f*(float)Math.sin(counterCamminata*(1*Math.PI/7))));
+            SetPosition(new V(position.x, position.y+ 0.002f*counterCamminata));
+            SetAngle(new A(1.5f*(float)Math.sin(counterCamminata*(1*Math.PI/4))));
 
             counterTimeC -= sogliaC;
 
